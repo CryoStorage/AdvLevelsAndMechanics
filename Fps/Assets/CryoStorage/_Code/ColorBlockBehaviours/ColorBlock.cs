@@ -15,6 +15,7 @@ public class ColorBlock : ColoredObject
     {
         Prepare();
         base.Start();
+        _startPos = transform.position;
     }
 
     private void OnCollisionEnter(Collision collision)

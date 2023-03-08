@@ -8,6 +8,18 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Template/Scenes/Playground.unity
     guid: 707acc8dffb72b144bb1ffbe1c965f3d
+  - enabled: 1
+    path: Assets/CryoStorage/Scenes/01-ImpactSite/01-ImpactSite.unity
+    guid: 92e099cea6e88404d9798542e692fc61
+  - enabled: 1
+    path: Assets/CryoStorage/Scenes/02-City/02-City.unity
+    guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/CryoStorage/Scenes/03-Examen/03-Examen.unity
+    guid: c95f1ecfd0f06784395d82894c0bd118
+  - enabled: 1
+    path: Assets/CryoStorage/Scenes/03-Examen/victory.unity
+    guid: b33fb37f94c05954691dd607477716bc
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 9e7be553448fa2546aea5752021cbcf7,
       type: 2}

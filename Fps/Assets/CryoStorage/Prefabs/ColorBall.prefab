@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6884821763961697923}
   - component: {fileID: 6884821763961697927}
   - component: {fileID: 6884821763961697924}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: ColorBall
   m_TagString: Untagged
   m_Icon: {fileID: 0}

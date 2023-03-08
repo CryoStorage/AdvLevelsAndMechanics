@@ -7,9 +7,11 @@ using UnityEngine;
 public class ColorBall : ColoredObject
 {
     [SerializeField] private float timeout = 3f;
+    
     private Rigidbody _rb;
-
     private Collider _collider;
+
+    private Vector3 launchOffset = new Vector3(0, 1f, 0);
     // Start is called before the first frame update
     protected override void Start()
     {
@@ -20,34 +22,39 @@ public class ColorBall : ColoredObject
 
     public void Launch(Vector3 origin, Vector3 launchDir, float launchForce)
     {
-        transform.position = origin;
+        transform.position = origin + launchOffset;
         Activate();
         _rb.AddForce(launchDir*launchForce, ForceMode.Impulse);
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (!collision.collider.CompareTag("ColorBlock")) return;
+        if (!collision.collider.CompareTag("ColorBlock"))
+        {
+            BeginTimeOut(); 
+            return;
+        }
         ColorBlock colorBlock = collision.gameObject.GetComponent<ColorBlock>();
-        if (colorBlock.color == color)
-        {
-            colorBlock.MoveToTarget();
-        }
-        else
-        {
-            Invoke(nameof(Deactivate),timeout);
-        }
+        if (colorBlock.color != color) return;
+        colorBlock.MoveToTarget();
+        Deactivate();
+    }
+
+    void BeginTimeOut()
+    {
+        Invoke(nameof(Deactivate),timeout);
     }
 
     public void SetColor(Color col)
     {
         color = col;
+        _rend.material.color = color;
     }
  
     private void Activate()
     {
-        _rend.enabled = false;
-        _collider.enabled = false;
+        _rend.enabled = true;
+        _collider.enabled = true;
         _rb.isKinematic = false;
     }
 

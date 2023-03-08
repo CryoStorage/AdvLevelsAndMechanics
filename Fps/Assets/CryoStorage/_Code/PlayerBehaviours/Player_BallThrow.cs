@@ -18,11 +18,15 @@ public class Player_BallThrow : MonoBehaviour
     private readonly Color _green = new Color(58f,200f,46f,255f);
 
     private StarterAssetsInputs _input;
+
+    private float _shootTimeout = .1f;
+    private float _shootTimeoutDelta = 0f;
     // Start is called before the first frame update
     void Start()
     {
         Prepare();
         indicator.color = _blank;
+        _shootTimeoutDelta = _shootTimeout;
     }
 
     private void Update()
@@ -33,26 +37,43 @@ public class Player_BallThrow : MonoBehaviour
 
     private void UpdateBallStatus()
     {
-        if (!_hasBall)
+        switch (_hasBall)
         {
+            case false:
             indicator.color = _blank;
-        }
-        if (_colorBall.color == _red)
-        {
-            indicator.color = _red;
-        } 
-        if (_colorBall.color == _green)
-        {
-            indicator.color = _green;
+            break;
+            case true:
+            indicator.color = _colorBall.color;
+                break;
         }
     }
 
-    public void ThrowBall()
+    private void ThrowBall()
     {
-        if (!_input.shoot) return;
-        if (!_hasBall)return;
-        _colorBall.Launch(transform.position,viewCam.transform.forward, launchForce);
-        _hasBall = false;
+        if (_hasBall)
+        {
+            if (_input.shoot && _shootTimeoutDelta <= 0.0f)
+            {
+                _colorBall.Launch(transform.position,viewCam.transform.forward, launchForce);
+                _hasBall = false;
+            }
+            
+            // shoot timeout
+            if (_shootTimeoutDelta >= 0.0f)
+            {
+                _shootTimeoutDelta -= Time.deltaTime;
+            }
+            else
+            {
+                _shootTimeoutDelta = _shootTimeout;
+            }
+        }
+        else
+        {
+            _input.shoot = false;
+        }
+      
+
     }
 
     private void OnTriggerEnter(Collider other)

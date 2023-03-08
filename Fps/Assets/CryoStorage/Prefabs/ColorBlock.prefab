@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 748639100733709992}
   m_Layer: 0
   m_Name: ColorBlock
-  m_TagString: Untagged
+  m_TagString: ColorBlock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -111,8 +111,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8c95673f5b00a54ba1308dc8ea2667d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _color: {r: 1, g: 1, b: 1, a: 1}
+  color: {r: 0, g: 0, b: 0, a: 0}
   moveTarget: {fileID: 748639101942530347}
+  lerpSpeed: 2
+  onHit:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &748639101942530347
 GameObject:
   m_ObjectHideFlags: 0

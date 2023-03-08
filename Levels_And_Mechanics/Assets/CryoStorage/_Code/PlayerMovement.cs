@@ -31,7 +31,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void InputForward()
     {
-        _dir += new Vector3(0, 0, moveSpeed);
+        _dir += transform.forward * moveSpeed;
     }
 
     public void InputLeft()
